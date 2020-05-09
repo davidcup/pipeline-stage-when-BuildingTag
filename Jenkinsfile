@@ -1,11 +1,11 @@
 pipeline {
-    agent any
+    agent {label 'windows'}
 	
     stages {
         stage('Build') {
 		
 			when{
-				tag "release-*"
+				branch 'master'
 			}
 		
             steps {                
