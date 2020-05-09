@@ -1,6 +1,11 @@
 pipeline {
 
-    agent {label 'windows'}	
+   agent {
+    node {
+      label 'windows'
+      customWorkspace '/github-davidcup'
+    }
+  }	
 	
     stages {
         stage('Build') {
