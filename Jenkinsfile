@@ -17,15 +17,15 @@ pipeline {
             steps {                
                 cleanWs()
                 timeout(time: 1, unit: 'MINUTES') {                      
-                    bat 'mkdir dist\\\\windows'                       
-                }
-		    def buildNumber = env.BUILD_NUMBER
+                    bat 'mkdir dist\\\\windows'            
+			def buildNumber = env.BUILD_NUMBER
 		    def workspace = env.WORKSPACE
 		    def buildUrl = env.BUILD_URL
 
 		    // PRINT ENVIRONMENT TO JOB
-		    echo "workspace directory is ${workspace}"
-		    echo "build URL is ${env.BUILD_URL}"
+		   bat 'echo "workspace directory is ${workspace}"'
+		   bat 'echo "build URL is ${env.BUILD_URL}"'
+                }		    
             }
         }
     }
