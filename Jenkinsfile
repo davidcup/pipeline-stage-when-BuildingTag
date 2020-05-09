@@ -3,7 +3,7 @@ pipeline {
    agent {
     node {
       label 'windows'
-      customWorkspace '/github-davidcup'
+      ////customWorkspace '/github-davidcup'
     }
   }	
 	
@@ -19,6 +19,13 @@ pipeline {
                 timeout(time: 1, unit: 'MINUTES') {                      
                     bat 'mkdir dist\\\\windows'                       
                 }
+		    def buildNumber = env.BUILD_NUMBER
+		    def workspace = env.WORKSPACE
+		    def buildUrl = env.BUILD_URL
+
+		    // PRINT ENVIRONMENT TO JOB
+		    echo "workspace directory is ${workspace}"
+		    echo "build URL is ${env.BUILD_URL}"
             }
         }
     }
