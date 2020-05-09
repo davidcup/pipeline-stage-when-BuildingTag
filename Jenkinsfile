@@ -1,5 +1,6 @@
 pipeline {
-    agent {label 'windows'}
+
+    agent {label 'windows'}	
 	
     stages {
         stage('Build') {
@@ -9,7 +10,10 @@ pipeline {
 			}
 		
             steps {                
-                echo 'Hello World building tag'
+                cleanWs()
+                timeout(time: 1, unit: 'MINUTES') {                      
+                    bat 'mkdir dist\\\\windows'                       
+                }
             }
         }
     }
