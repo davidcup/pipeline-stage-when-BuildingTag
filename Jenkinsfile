@@ -1,3 +1,7 @@
+def buildNumber = env.BUILD_NUMBER
+def workspace = env.WORKSPACE
+def buildUrl = env.BUILD_URL
+
 pipeline {
 
    agent {
@@ -17,10 +21,7 @@ pipeline {
             steps {                
                 cleanWs()
                 timeout(time: 1, unit: 'MINUTES') {                      
-                    bat 'mkdir dist\\\\windows'            
-			def buildNumber = env.BUILD_NUMBER
-		    def workspace = env.WORKSPACE
-		    def buildUrl = env.BUILD_URL
+                    bat 'mkdir dist\\\\windows'            		
 
 		    // PRINT ENVIRONMENT TO JOB
 		   bat 'echo "workspace directory is ${workspace}"'
