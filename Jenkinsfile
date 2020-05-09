@@ -1,7 +1,3 @@
-def buildNumber = env.BUILD_NUMBER
-def workspace = env.WORKSPACE
-def buildUrl = env.BUILD_URL
-
 pipeline {
 
    agent {
@@ -24,8 +20,8 @@ pipeline {
                     bat 'mkdir dist\\\\windows'            		
 
 		    // PRINT ENVIRONMENT TO JOB
-		   bat 'echo "workspace directory is ${workspace}"'
-		   bat 'echo "build URL is ${env.BUILD_URL}"'
+		   bat "echo 'Workspace is:' ${env.WORKSPACE}'"
+		   bat "echo 'build URL is ${env.BUILD_URL}'"
                 }		    
             }
         }
