@@ -1,3 +1,8 @@
+def getFolderName() {
+    def array = pwd().split("/")
+    return array[array.length - 2];
+}
+
 pipeline {
 
    agent {
@@ -22,6 +27,8 @@ pipeline {
 		    // PRINT ENVIRONMENT TO JOB
 		   bat "echo 'Workspace is:' ${env.WORKSPACE}'"
 		   bat "echo 'build URL is ${env.BUILD_URL}'"
+			 def foldername = getFolderName()
+		   bat "${foldername}"
                 }		    
             }
         }
