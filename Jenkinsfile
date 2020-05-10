@@ -13,7 +13,7 @@ pipeline {
   }	
   
     environment {
-	  nuget = "c:/nuget"
+	  nuget = "c:/nuget/nuget.exe"
 	}
 	
     stages {
