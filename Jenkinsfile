@@ -10,15 +10,18 @@ pipeline {
 	
     stages {
 	    stage('Checkout') {
-          steps {                
-                bat 'echo 'Hello'' 
-			}
-		}
-        stage('Build') {
-		
+		  
 			when{
 				branch 'master'
 			}
+		
+          steps {                
+                timeout(time: 1, unit: 'MINUTES') {                      
+                    bat 'echol "Hello"' 
+                }
+			}
+		}
+        stage('Build') {
 		
             steps {
                 timeout(time: 1, unit: 'MINUTES') {                      
