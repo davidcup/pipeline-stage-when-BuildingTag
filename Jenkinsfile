@@ -33,8 +33,8 @@ pipeline {
 					if (!targetBranch) { 
 						targetBranch = 'master'
 					}
-					echo 'The main is ${isMainlineBranch}'
-					echo 'The target is ${targetBranch}'
+					echo 'The main is ${env.BRANCH_NAME}'
+					echo 'The target is ${env.CHANGE_TARGET}'
 				}
 		      }
 	     }
