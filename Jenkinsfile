@@ -45,7 +45,7 @@ pipeline {
 		 script {
 		 def MSBuild = tool 'MSBuild 2017'
 	      ////   bat "${env.Nuget}/nuget.exe restore SchoolTracker.sln"
-		 bat "${env.Dotnet}/dotnet restore "SchoolTracker.Core.Api/SchoolTracker.Core.Api.csproj"
+		 bat "${env.Dotnet}/dotnet restore SchoolTracker.Core.Api/SchoolTracker.Core.Api.csproj"
 		 bat "${env.Dotnet}/dotnet build SchoolTracker.sln -c Release -o /app"	 
              ///   bat "\"${MSBuild}/msbuild\" /t:Build SchoolTracker.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
               }           
