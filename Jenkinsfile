@@ -19,7 +19,7 @@ pipeline {
 	
     stages {
 	stage('Checkout') {	
-	        cleanWs()
+	        
 		when {
 		  branch 'master'
 		}		
