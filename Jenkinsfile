@@ -48,8 +48,8 @@ pipeline {
 		// bat "${env.Dotnet}/dotnet restore SchoolTracker.Core.Api/SchoolTracker.Core.Api.csproj"
 		/// bat "${env.Dotnet}/dotnet build SchoolTracker.sln -c Release -o /app"	 
 			/// bat "nuget restore \"${workspace}/YourProject.sln\""
-		bat "\"C:/Program Files/dotnet/dotnet.exe\" restore \"${workspace}/SchoolTracker.sln\""
-		bat "\"C:/Program Files/dotnet/dotnet.exe\" build \"${workspace}/SchoolTracker.sln\""
+		bat "\"${env.Dotnet}//dotnet.exe\" restore \"${workspace}/SchoolTracker.sln\""
+		bat "\"${env.Dotnet}//dotnet.exe\" build \"${workspace}/SchoolTracker.sln\""
              ///   bat "\"${MSBuild}/msbuild\" /t:Build SchoolTracker.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
               }           
 	   }
