@@ -1,5 +1,9 @@
-
 pipeline {
+
+   options { 
+      disableConcurrentBuilds() 
+	  buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
+	}
 
    agent {
     node {
@@ -24,9 +28,7 @@ pipeline {
         stage('Build') {
 		
             steps {
-                timeout(time: 1, unit: 'MINUTES') {                      
-                    bat 'mkdir dist\\\\windows' 
-                }		    
+                bat "\"${tool 'MSBuild 2017'}\" SchoolTracker.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
             }
         }
     }
