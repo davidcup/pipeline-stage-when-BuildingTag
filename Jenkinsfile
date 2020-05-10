@@ -3,7 +3,7 @@ pipeline {
    agent {
     node {
       label 'windows'
-      customWorkspace 'C:\jenkins\workspace\github-davidcup\'
+      customWorkspace 'C:/jenkins/workspace/github-davidcup'
     }
   }	
 	
