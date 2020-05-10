@@ -1,4 +1,4 @@
-def branch='master'
+
 pipeline {
 
    agent {
@@ -17,7 +17,7 @@ pipeline {
 		
           steps {                
                 timeout(time: 1, unit: 'MINUTES') {                      
-                    bat 'echol "Hello"' 
+                    bat 'echo "Hello"' 
                 }
 			}
 		}
