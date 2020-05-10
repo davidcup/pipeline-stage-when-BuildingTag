@@ -12,21 +12,22 @@ pipeline {
 	    stage('Checkout') {
           steps {                
                 cleanWs()
-				dir("${branch}") {
-				  checkout([$class: 'GitSCM',
-					userRemoteConfigs: [[name: 'bugs-origin-subdir',
-								 refspec: "+refs/heads/${branch}:refs/remotes/bugs-origin-subdir/${branch}",
-								 url: 'https://github.com/davidcup/pipeline-stage-when-BuildingTag.git']],
-					branches: [[name: "${branch}"]],
-					browser: [$class: 'GithubWeb', repoUrl: 'https://github.com/davidcup/pipeline-stage-when-BuildingTag.git'],
-					extensions: [
-					  [$class: 'AuthorInChangelog'],
-					  [$class: 'CleanBeforeCheckout'],
-					  [$class: 'CloneOption', honorRefspec: true, noTags: true, reference: '../.git', shallow: true],
-					  [$class: 'LocalBranch', localBranch: "${branch}"],
-					],
-					   ])
-				}
+				checkout(
+                  [ $class: 'GitSCM',
+                    branches: [[name: "refs/heads/${env.BRANCH_NAME}"]],
+                    extensions: [
+                      [ $class: 'CloneOption', depth: 1, honorRefspec: true, noTags: true, reference: 'davidcup/pipeline-stage-when-buildingtag', shallow: true],
+                      [ $class: 'LocalBranch', localBranch: env.BRANCH_NAME],
+                      [ $class: 'PruneStaleBranch']
+                    ],
+                    gitTool: scm.gitTool,
+                    userRemoteConfigs: [
+                      [ refspec: scm.userRemoteConfigs[0].refspec,
+                        url: scm.userRemoteConfigs[0].url
+                      ]
+                    ]
+                  ]
+                )
 			}
 		}
         stage('Build') {
