@@ -14,7 +14,7 @@ pipeline {
   
     environment {
 	  Nuget = "C:/Nuget"
-	  Dotnet = "C://Program Files//dotnet"
+	  Dotnet = "C:/Program Files/dotnet"
 	}
 	
     stages {
@@ -44,9 +44,12 @@ pipeline {
             steps {
 		 script {
 		 def MSBuild = tool 'MSBuild 2017'
-	      ////   bat "${env.Nuget}/nuget.exe restore SchoolTracker.sln"
-		 bat "${env.Dotnet}/dotnet restore SchoolTracker.Core.Api/SchoolTracker.Core.Api.csproj"
-		 bat "${env.Dotnet}/dotnet build SchoolTracker.sln -c Release -o /app"	 
+	         bat "${env.Nuget}/nuget.exe restore SchoolTracker.sln"
+		// bat "${env.Dotnet}/dotnet restore SchoolTracker.Core.Api/SchoolTracker.Core.Api.csproj"
+		/// bat "${env.Dotnet}/dotnet build SchoolTracker.sln -c Release -o /app"	 
+			/// bat "nuget restore \"${workspace}/YourProject.sln\""
+		bat "\"C:/Program Files/dotnet/dotnet.exe\" restore \"${workspace}/ SchoolTracker.sln\""
+		bat "\"C:/Program Files/dotnet/dotnet.exe\" build \"${workspace}/ SchoolTracker.sln\""
              ///   bat "\"${MSBuild}/msbuild\" /t:Build SchoolTracker.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
               }           
 	   }
