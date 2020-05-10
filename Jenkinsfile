@@ -33,7 +33,8 @@ pipeline {
 					if (!targetBranch) { 
 						targetBranch = 'master'
 					}
-					bat 'echo "${isMainlineBranch}"' 
+					bat 'echo ${isMainlineBranch}' 
+					bat 'echo ${targetBranch}'
 				}
 		      }
 	     }
