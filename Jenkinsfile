@@ -1,7 +1,7 @@
 pipeline {
 
    options { 
-      disableConcurrentBuilds() 
+          disableConcurrentBuilds() 
 	  buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
 	}
 
@@ -11,6 +11,10 @@ pipeline {
       customWorkspace 'C:/jenkins/workspace/github-davidcup'
     }
   }	
+  
+    environment {
+	  nuget = "c:/nuget"
+	}
 	
     stages {
 	    stage('Checkout') {
@@ -25,13 +29,15 @@ pipeline {
                 }
 			}
 		}
-        stage('Build') {		
+        stage('Build') {
+		
             steps {
-               script {
-		def MSBuild = tool 'MSBuild 2017'
-                bat "\"${MSBuild}/msbuild\" /t:Build SchoolTracker.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
-              }
-            }
+		 script {
+		 def MSBuild = tool 'MSBuild 2017'
+	         bat "nuget restore SchoolTracker.sln"
+                 bat "\"${MSBuild}/msbuild\" /t:Build SchoolTracker.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
+              }           
+	   }
         }
     }
 }
