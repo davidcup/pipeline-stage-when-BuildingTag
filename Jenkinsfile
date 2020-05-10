@@ -34,7 +34,7 @@ pipeline {
 						targetBranch = 'master'
 					}
 					bat "echo The main is ${env.BRANCH_NAME}"
-					bat "The target is ${env.CHANGE_TARGET}"
+					bat "echo The target is ${env.CHANGE_TARGET}"
 				}
 		      }
 	     }
