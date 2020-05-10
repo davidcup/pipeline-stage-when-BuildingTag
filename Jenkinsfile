@@ -14,7 +14,7 @@ pipeline {
   
     environment {
 	  Nuget = "C:/Nuget"
-	  Dotnet = "C:/Program Files/dotnet"
+	  Dotnet = "C://Program Files//dotnet"
 	}
 	
     stages {
