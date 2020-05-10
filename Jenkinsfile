@@ -24,7 +24,18 @@ pipeline {
 		  steps {                
 			timeout(time: 1, unit: 'MINUTES') {                      
 			    bat 'echo "Hello"' 
-		}
+				script{
+					def isMainlineBranch = (env.BRANCH_NAME ==~ /master|next|\d_\d_(X|\d)/)
+					def targetBranch = env.CHANGE_TARGET 
+					if (isMainlineBranch) { 
+						targetBranch = env.BRANCH_NAME
+					}
+					if (!targetBranch) { 
+						targetBranch = 'master'
+					}
+					bat 'echo "${isMainlineBranch}"' 
+				}
+		      }
 	     }
 	}
         stage('Build') {		
